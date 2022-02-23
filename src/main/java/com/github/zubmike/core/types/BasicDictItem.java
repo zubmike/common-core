@@ -2,11 +2,13 @@ package com.github.zubmike.core.types;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Null;
+import java.io.Serial;
 import java.util.Objects;
 
 public class BasicDictItem implements DictItem<Integer> {
 
-	private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 3412493314013523500L;
 
 	private int id;
 
@@ -47,10 +49,9 @@ public class BasicDictItem implements DictItem<Integer> {
 		if (this == o) {
 			return true;
 		}
-		if (!(o instanceof BasicDictItem)) {
+		if (!(o instanceof BasicDictItem that)) {
 			return false;
 		}
-		BasicDictItem that = (BasicDictItem) o;
 		return id == that.id && Objects.equals(name, that.name);
 	}
 

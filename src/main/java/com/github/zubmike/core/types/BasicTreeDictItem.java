@@ -1,11 +1,13 @@
 package com.github.zubmike.core.types;
 
 import javax.validation.constraints.Null;
+import java.io.Serial;
 import java.util.Objects;
 
 public class BasicTreeDictItem extends BasicDictItem implements TreeDictItem<Integer> {
 
-	private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 5101779268381286467L;
 
 	@Null
 	private Integer parentId;
@@ -38,13 +40,12 @@ public class BasicTreeDictItem extends BasicDictItem implements TreeDictItem<Int
 		if (this == o) {
 			return true;
 		}
-		if (!(o instanceof BasicTreeDictItem)) {
+		if (!(o instanceof BasicTreeDictItem that)) {
 			return false;
 		}
 		if (!super.equals(o)) {
 			return false;
 		}
-		BasicTreeDictItem that = (BasicTreeDictItem) o;
 		return Objects.equals(parentId, that.parentId);
 	}
 

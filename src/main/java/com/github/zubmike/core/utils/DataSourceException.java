@@ -1,8 +1,11 @@
 package com.github.zubmike.core.utils;
 
+import java.io.Serial;
+
 public class DataSourceException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = 5930252103520217467L;
 
 	private final DataSourceType type;
 

@@ -1,8 +1,11 @@
 package com.github.zubmike.core.utils;
 
+import java.io.Serial;
+
 public class InternalException extends RuntimeException {
 
-	private static final long serialVersionUID = 1L;
+	@Serial
+	private static final long serialVersionUID = -4395481990562022216L;
 
 	public InternalException() {
 	}
