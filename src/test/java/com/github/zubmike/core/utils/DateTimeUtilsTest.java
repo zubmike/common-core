@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 public class DateTimeUtilsTest {
 
@@ -17,6 +18,16 @@ public class DateTimeUtilsTest {
 		Assert.assertEquals(isoDateTime, DateTimeUtils.toString(dateTime));
 	}
 
+	@Test(expected = InvalidParameterException.class)
+	public void processInvalidDate() {
+		DateTimeUtils.getDate("qwerty");
+	}
+
+	@Test(expected = InvalidParameterException.class)
+	public void processInvalidDateTime() {
+		DateTimeUtils.getDateTime("qwerty");
+	}
+
 	@Test
 	public void getQuarter() {
 		Assert.assertEquals(1, DateTimeUtils.getQuarter(LocalDate.of(2019, 1, 1)));
@@ -25,11 +36,21 @@ public class DateTimeUtilsTest {
 	}
 
 	@Test
-	public void getWeek() {
+	public void getWeekWithEULocale() {
+		Locale.setDefault(Locale.UK);
 		Assert.assertEquals(1, DateTimeUtils.getWeek(LocalDate.of(2019, 1, 1)));
 		Assert.assertEquals(32, DateTimeUtils.getWeek(LocalDate.of(2019, 8, 8)));
-		Assert.assertEquals(52, DateTimeUtils.getWeek(LocalDate.of(2019, 12, 29)));
 		Assert.assertEquals(1, DateTimeUtils.getWeek(LocalDate.of(2019, 12, 31)));
+		Assert.assertEquals(52, DateTimeUtils.getWeek(LocalDate.of(2019, 12, 29)));
+	}
+
+	@Test
+	public void getWeekWithUSLocale() {
+		Locale.setDefault(Locale.US);
+		Assert.assertEquals(1, DateTimeUtils.getWeek(LocalDate.of(2019, 1, 1)));
+		Assert.assertEquals(32, DateTimeUtils.getWeek(LocalDate.of(2019, 8, 8)));
+		Assert.assertEquals(1, DateTimeUtils.getWeek(LocalDate.of(2019, 12, 31)));
+		Assert.assertEquals(1, DateTimeUtils.getWeek(LocalDate.of(2019, 12, 29)));
 	}
 
 	@Test
